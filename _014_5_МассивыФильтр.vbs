@@ -12,7 +12,6 @@ Arr_name(4) = "Пятница"
 Arr_name(5) = "Суббота"
 
 Arr_Filter = Filter(Arr_name, "ик", false, 1)
-rem удаляет все ики
 
 i = 0
 
