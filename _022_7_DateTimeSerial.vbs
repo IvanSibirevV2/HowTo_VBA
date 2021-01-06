@@ -17,6 +17,12 @@ MsgBox My_Time &  vbCrLf & My_Time_2 &  vbCrLf & My_Time_3
 MsgBox WeekDay(#14/02/1995#, vbSunday)'???
 MsgBox  WeekdayName(3, False, vbMonday) &  vbCrLf & WeekdayName(3, True, vbMonday)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+MsgBox DateValue(now) &  vbCrLf & DateValue("14, февраль, 1995") &  vbCrLf & DateValue("02,14,1995") &  vbCrLf & DateValue("02/14/1995")
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+MsgBox MonthName(9,true) &  vbCrLf & MonthName(9,false)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+MsgBox " Now = " & Now & vbCrLf & "FormatDateTime(Now, 0) = " & FormatDateTime(Now, 0) & vbCrLf & "FormatDateTime(Now, 1) = " & FormatDateTime(Now, 1) & vbCrLf & "FormatDateTime(Now, 2) = " & FormatDateTime(Now, 2) & vbCrLf & "FormatDateTime(Now, 3) = " & FormatDateTime(Now, 3) & vbCrLf & "FormatDateTime(Now, 4) = " & FormatDateTime(Now, 4)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
 'vbUseSystemDayOfWeek Ч использовать настройки по умолчанию системы
 'vbSunday Ч воскресенье
 'vbMonday Ч понедельник
