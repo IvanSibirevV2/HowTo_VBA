@@ -1,6 +1,12 @@
-i=0
-While Not i = 10
-	List2 = List2 & i & vbCrlf
-	i = i + 1
-Wend
-MsgBox List2
+List="динамический массив" & vbCrlf
+dim dyn_name()
+i = 0
+Do			
+	'перезаписываем размерность массива с сохранением имеющийся информации
+	Redim Preserve dyn_name(i)
+	dyn_name(i) = i		'присваиваем значение каждому элементу массива
+	List=List & i &"="& dyn_name(i) & vbCrlf
+	i = i + 1			'увеличиваем значение переменной i на единицу
+loop  Until (i>20)	'выполнять пока i не станет больше 100 т.е. 101 элемент массива
+MsgBox List
+
