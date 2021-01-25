@@ -2,22 +2,19 @@
 '÷иклы While Е Wend и Do Е Loop
 'file_5.vbs
 
-dim i, arr_name(5), Arr_Filter, List
+Dim fun_name = Function(a, b)
+begin
+	Dim rezult
+	rezult = a+b
+	fun_name = rezult
+	'присваиваем значение функцие, которое она нам вернЄт
+end
 
-Arr_name(0) = "ѕонедельни "
-Arr_name(1) = "¬торник"
-Arr_name(2) = "—реда"
-Arr_name(3) = "„етверг"
-Arr_name(4) = "ѕ€тница"
-Arr_name(5) = "—уббота"
+MsgBox fun_name(1,2)
 
-Arr_Filter = Filter(Arr_name, "ик", false, 1)
-
-i = 0
-
-Do Until i = UBound(Arr_Filter) + 1
-List = List & Arr_Filter(i) & vbCrlf
-i = i+1
-Loop
-
-MsgBox List
+rem Function fun_name(a, b)
+rem      Dim rezult
+rem      rezult = a+b
+rem      fun_name = rezult
+rem      'присваиваем значение функцие, которое она нам вернЄт
+rem End Function
