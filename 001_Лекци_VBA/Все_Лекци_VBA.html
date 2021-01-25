@@ -14302,16 +14302,300 @@ MsgBox d<br/>
 <ul>
 <li>MsgBox навороченный вывод сообщений<br/> </li>
 <li>vbCrLf - спец символ перехода на новую строку</li>
-<li>vbTab - спец символ отступа<div style="background: #ddffdd">
+<li>vbTab - спец символ отступа</li>
+</ul>
+<div style="background: #ddffdd">
 MsgBox "Привет мир"<br/>
 MsgBox _<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Привет мир" & vbCrLf &_<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Символом <_> переношу инструкции на другую строку"& vbCrLf & _<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;" ""А теперь экранируем кавычки"" "& vbCrLf & _<br/>
 "!!!"&vbTab&"!!!"<br/>
-</div></li>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Время ветвлений<br/></li>
 </ul>
+<div style="background: #ddffdd">
+Dim a<br/>
+a = 10<br/>
+if a = 10 then MsgBox "a = 10"<br/>    
+</div><br/>
 
+<div style="background: #ddffdd">
+Dim a<br/>
+a = 20<br/>
+if a = 10 then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "a = 10"<br/>
+else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "a != 10"<br/>
+end if<br/>
+</div><br/>
+
+<div style="background: #ddffdd">
+Dim a<br/>
+a = 10<br/>
+'пример третьей конструкции<br/>
+if a = 10 then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "a = 10"<br/>
+elseif a = 20 then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "a = 20"<br/>
+elseif a = 40.5 then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "a = 40,5"<br/>
+else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MsgBox "совпадений не найдено"<br/>
+End if<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Select case и этим все сказано<br/></li>
+</ul>
+<p><div style="background: #ddffdd">
+Dim a<br/>
+a = 11<br/>
+Select case a<br/>
+case 3 & b = "b = 3"<br/>
+case 10 & b = "b = 10"<br/>
+case else <br/>
+&nbsp;&nbsp;&nbsp;&nbsp; b = "b = " & a<br/>
+End Select<br/>
+MsgBox b<br/>
+</div><br/></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>фунуции.<br/></li>
+</ul>
+<p><div style="background: #ddffdd">
+Function fun_name(a, b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; Dim rezult<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; rezult = a+b<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; fun_name = rezult<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 'присваиваем значение функцие, которое она нам вернёт<br/>
+End Function<br/><br/>
+MsgBox fun_name(5,110)<br/>
+MsgBox fun_name(15,16)<br/>
+MsgBox fun_name(25,15)<br/>
+</div><br/></p>
+<p><div style="background: #ddffdd">
+Sub sub_name(a, b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; Dim rezult<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; rezult = a+b<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; MsgBox rezult<br/>
+End Sub<br/><br/>
+Call sub_name(5,110)<br/>
+Call sub_name(15,16)<br/>
+Call sub_name(25,15)<br/>
+sub_name 25,1<br/>
+</div><br/></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Циклы 1<br/></li>
+</ul>
+<div style="background: #ddffdd">
+i = 0<br/>
+Do While (i $<$ 3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List = list & i & vbCrlf<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; i = i + 1<br/>
+loop<br/>
+MsgBox List<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Циклы 2<br/></li>
+</ul>
+<div style="background: #ddffdd">
+i = 0<br/>
+Do<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List = list & i & vbCrlf<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; i = i + 1<br/>
+loop While (i $<$ 3)<br/>
+MsgBox List<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Циклы 3<br/></li>
+</ul>
+<div style="background: #ddffdd">
+i = 0<br/>
+While i$<$3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List = list & i & vbCrlf<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; i = i + 1<br/>
+Wend<br/>
+MsgBox List<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Циклы 4<br/></li>
+</ul>
+<div style="background: #ddffdd">
+i=0<br/>
+While Not i = 10<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;List2 = List2 & i & vbCrlf<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i = i + 1<br/>
+Wend<br/>
+MsgBox List2<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Циклы 5<br/></li>
+</ul>
+<div style="background: #ddffdd">
+i = 0<br/>
+Do<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; MsgBox "Пример №4: " & i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; i = i + 1<br/>
+loop  Until (i>3)<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Циклы 6<br/></li>
+</ul>
+<div style="background: #ddffdd">
+i = 0<br/>
+Do Until (i$>$3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; MsgBox "Пример №3: " & i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; i = i + 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; If i = 2 Then Exit Do<br/>
+loop<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>////////////////////////////////////////////////////////////////////<br/></p>
+<ul>
+<li>Массивы 1<br/></li>
+</ul>
+<p><div style="background: #ddffdd">
+dim arr(2)<br/>
+<br/>
+arr(0) = 100<br/>
+arr(1) = "строка"<br/>
+arr(2) = #12/05/2015#<br/>
+<br/>
+MsgBox _<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(0) & VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(1) & VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(2) & VbCrLf &_<br/>
+"!!!"<br/>
+</div><br/></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Массивы 2<br/></li>
+</ul>
+<p><div style="background: #ddffdd">
+dim arr(2,3)<br/>
+<br/>
+arr(0,0) = "00"<br/>
+arr(0,1) = "01"<br/>
+arr(0,2) = "02"<br/>
+arr(0,3) = "03"<br/>
+<br/>
+arr(1,0) = "10"<br/>
+arr(1,1) = "11"<br/>
+arr(1,2) = "12"<br/>
+arr(1,3) = "13"<br/>
+<br/>
+arr(2,0) = "20"<br/>
+arr(2,1) = "21"<br/>
+arr(2,2) = "22"<br/>
+arr(2,3) = "23"<br/>
+<br/>
+MsgBox _<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(0,0) & vbTab & arr(0,1) & vbTab & arr(0,2) & vbTab &arr(0,3) & VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(1,0) & vbTab & arr(1,1) & vbTab & arr(1,2) & vbTab &arr(1,3) & VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(2,0) & vbTab & arr(2,1) & vbTab & arr(2,2) & vbTab &arr(2,3) & VbCrLf &_<br/>
+"!!!"<br/>
+</div><br/></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Массивы 3<br/></li>
+</ul>
+<p><div style="background: #ddffdd">
+List="динамический массив" & vbCrlf<br/>
+dim dyn_name()<br/>
+i = 0<br/>
+Do<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 'перезаписываем размерность массива<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 'с сохранением имеющийся информации<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; Redim Preserve dyn_name(i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; 'присваиваем значение каждому элементу массива<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; dyn_name(i) = i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List=List & i &"="& dyn_name(i) & vbCrlf<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; i = i + 1<br/>
+loop  Until (i$>$20)<br/>
+MsgBox List<br/>
+</div><br/></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Массивы 4<br/></li>
+<li>LBound(arr) - нахождение минимального индекса массива</li>
+<li>UBound(arr) - нахождение максимального индекса массива</li>
+</ul>
+<div style="background: #ddffdd">
+dim arr(4)<br/>
+<br/>
+arr(0) = "$<-0->$"<br/>
+arr(1) = "$<-1->$"<br/>
+arr(2) = "$<-2->$"<br/>
+arr(3) = "$<-3->$"<br/>
+arr(4) = "$<-4->$"<br/>
+<br/>
+MsgBox _<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; "arr={"&_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(0) &";"&_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(1) &";"&_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(2) &";"&_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(3) &";"&_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; arr(4) &";"&_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; "};"& VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; "LBound(arr)="&LBound(arr)& VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; "UBound(arr)="&UBound(arr)& VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; "arr(LBound(arr))="&arr(LBound(arr))& VbCrLf &_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; "arr(UBound(arr))="&arr(UBound(arr))& VbCrLf &_<br/>
+"!!!"<br/>
+</div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">

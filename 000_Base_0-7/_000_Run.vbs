@@ -1,12 +1,4 @@
-List="динамический массив" & vbCrlf
-dim dyn_name()
-i = 0
-Do			
-	'перезаписываем размерность массива с сохранением имеющийся информации
-	Redim Preserve dyn_name(i)
-	dyn_name(i) = i		'присваиваем значение каждому элементу массива
-	List=List & i &"="& dyn_name(i) & vbCrlf
-	i = i + 1			'увеличиваем значение переменной i на единицу
-loop  Until (i>20)	'выполнять пока i не станет больше 100 т.е. 101 элемент массива
-MsgBox List
+dim arr_name
 
+arr_name = Array(Array(10,"строка",#12/05/2015#,54),Array(11,3,15,44),Array(18,37,16,34)) 'задаём значения для элементов массива
+MsgBox arr_name(0)(2) & vbCrlf & arr_name(1)(2) & vbCrlf & arr_name(2)(2)
