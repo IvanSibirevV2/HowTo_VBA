@@ -14259,7 +14259,7 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="VisualBasicScript">VisualBasicScript<a class="anchor-link" href="#VisualBasicScript">&#182;</a></h3><p>Литература: <br/></p>
+<h3 id="VisualBasicScript">VisualBasicScript<a class="anchor-link" href="#VisualBasicScript">&#182;</a></h3><h1 id="My-Great-Heading-">My Great Heading <br /><a class="anchor-link" href="#My-Great-Heading-">&#182;</a></h1><p>Литература: <br/></p>
 <ul>
 <li><a href="http://vbhack.ru/page/3">vbhack.ru [1-3 уроки]</a><br/></li>
 <li><a href="http://vbhack.ru/page/2">vbhack.ru [3-11 уроки]</a><br/></li>
@@ -14278,7 +14278,15 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ul>
+<div class="block">
+    <h1 class="extremum-click" onclick ='
+
+                                         document.getElementById(''id20210128_0808'')
+                                         $(this).siblings(".extremum-slide").slideToggle("slow");''>Чайники</h1>
+    <div id="id20210128_0808" style="display: block;border: 1px solid;padding: 50px;">
+    Этот рассказ про то, как я однажды пошел в лес за грибами и нашел волшебный чайник.
+    </div>_
+</div><ul>
 <li>MsgBox  стандартный вывод сообщений<br/><div style="background: #ddffdd">
 Dim a, b, c, d<br/>
 a = 10<br/>
@@ -14372,6 +14380,14 @@ MsgBox b<br/>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1080;-&#1080;-&#1087;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1099;">&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1080; &#1080; &#1087;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1099;<a class="anchor-link" href="#&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1080;-&#1080;-&#1087;&#1088;&#1086;&#1094;&#1077;&#1076;&#1091;&#1088;&#1099;">&#182;</a></h1><ul>
+<li>Процедуры - вообще не подразумеваюн возвращаемых значений и использования как лямбда выражений<br/></li>
+</ul>
+<p><div style="background: #ddffdd">
+Sub my_MsgBox(str)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; MsgBox "Как написать процедуру"&vbCrLf&str<br/>
+End Sub<br/>    
+</div><br/></p>
 <ul>
 <li>фунуции.<br/></li>
 </ul>
@@ -14397,6 +14413,9 @@ Call sub_name(15,16)<br/>
 Call sub_name(25,15)<br/>
 sub_name 25,1<br/>
 </div><br/></p>
+<ul>
+<li>фунуции и процедуры скриптов *.vbs не подразумевают существования лямбда выражений. В более поздней версии технологий есть заплатки для лямбда-выражений для макросов VBA-Excel и VBA-VisualStudio-2019<br/></li>
+</ul>
 
 </div>
 </div>
@@ -14491,8 +14510,29 @@ loop<br/>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>////////////////////////////////////////////////////////////////////<br/></p>
 <ul>
+<li>Циклы 7<br/></li>
+</ul>
+<div style="background: #ddffdd">
+dim arr(5)<br/>
+<br/>
+arr(0) = "ПонедельниК"<br/>
+arr(1) = "Вторник"<br/>
+arr(2) = "Среда"<br/>
+arr(3) = "Четверг"<br/>
+arr(4) = "Пятница"<br/>
+arr(5) = "Суббота"<br/>
+<br/>
+for each index in arr<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List = List & index & vbCrLf<br/>
+next<br/>
+MsgBox List<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="&#1052;&#1072;&#1089;&#1089;&#1080;&#1074;&#1099;">&#1052;&#1072;&#1089;&#1089;&#1080;&#1074;&#1099;<a class="anchor-link" href="#&#1052;&#1072;&#1089;&#1089;&#1080;&#1074;&#1099;">&#182;</a></h1><ul>
 <li>Массивы 1<br/></li>
 </ul>
 <p><div style="background: #ddffdd">
@@ -14596,6 +14636,135 @@ MsgBox _<br/>
 &nbsp;&nbsp;&nbsp;&nbsp; "arr(UBound(arr))="&arr(UBound(arr))& VbCrLf &_<br/>
 "!!!"<br/>
 </div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Массивы 5<br/>
+Массив внутри массива...<br/></li>
+</ul>
+<div style="background: #ddffdd">
+dim arr_name<br/>
+arr_name = Array(Array(10,"строка",#12/05/2015#,54),Array(11,3,15,44),Array(18,37,16,34)) 'задаём значения для элементов массива<br/>
+MsgBox arr_name(0)(2) & vbCrlf & arr_name(1)(2) & vbCrlf & arr_name(2)(2)<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Массивы $/$ Фильтры 1<br/></li>
+</ul>
+<div style="background: #ddffdd">
+arr = Array("ПонедельниК","Вторник","Среда","Четверг","Пятница","Суббота")<br/>
+Arr_Filter = Filter(arr, "ик", false, 1)<br/>
+<br/>
+Arr_Filter = Filter(arr, "ик", false, 1)<br/>
+<br/>
+for each index in Arr_Filter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List = List & index & vbCrLf<br/>
+next<br/>
+MsgBox List<br/>
+</div><br/>
+
+<div style="background: #ddffdd">
+a=Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")<br/>
+b=Filter(a,"S",True,1)<br/>
+<br/>
+for each index in b<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; List = List & index & vbCrLf<br/>
+next<br/>
+MsgBox List<br/>
+</div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<ul>
+<li>Join и Split</li>
+<li>Join - объединяет массив, в текст, добовляя разделительный символ</li>
+</ul>
+<p><div style="background: #ddffdd">
+arr = Array("ПонедельниК","Вторник","Среда","Четверг","Пятница","Суббота")<br/>
+Arr_Join = Join(arr, ",")<br/>
+MsgBox Arr_Join<br/>
+</div>
+<a href="http://vbhack.ru/uroki-vbscript/urok-vbscript-n5-massivy-i-fnkcii-dlya-raboty-s.html">http://vbhack.ru/uroki-vbscript/urok-vbscript-n5-massivy-i-fnkcii-dlya-raboty-s.html</a>
+<a href="https://www.w3schools.com/asp/func_join.asp">https://www.w3schools.com/asp/func_join.asp</a></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@magic</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+LoadError: UndefVarError: @magic not defined
+in expression starting at In[3]:1
+
+Stacktrace:
+ [1] top-level scope
+ [2] include_string(::Function, ::Module, ::String, ::String) at .\loading.jl:1091</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a href="MyGreatHeading">Section title</a></p>
+<p><h1 id="id20210128_0817" onclick ='
+function () {   
+    console.log(document.getElementById("id20210128_0808"));
+};
+'>Чайники</h1></p>
+<div id="id20210128_0808" style="display: block;border: 1px solid;padding: 50px;">
+Этот рассказ про то, как я однажды пошел в лес за грибами и нашел волшебный чайник.
+</div><script defer>
+document.getElementById("id20210128_0817").onclick =function () {   
+
+    _id="id20210128_0808";
+    _TurnTargetDiv=document.getElementById(_id);
+    console.log(_TurnTargetDiv);
+    console.log(_TurnTargetDiv.style.display);
+
+    if(_TurnTargetDiv.style.display=="block")
+    {_TurnTargetDiv.style.display="none";}
+    else{_TurnTargetDiv.style.display="block";}
+
+};
+</script>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a href="https://medium.com/analytics-vidhya/the-ultimate-markdown-guide-for-jupyter-notebook-d5e5abf728fd">https://medium.com/analytics-vidhya/the-ultimate-markdown-guide-for-jupyter-notebook-d5e5abf728fd</a></p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">

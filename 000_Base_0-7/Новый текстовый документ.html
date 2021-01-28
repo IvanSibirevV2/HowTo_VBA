@@ -1,0 +1,20 @@
+
+<h1 id="id20210128_0817" onclick ='console.log(document.getElementById("id20210128_0808"))'>Чайники</h1>
+<div id="id20210128_0808" style="display: block;border: 1px solid;padding: 50px;">
+Этот рассказ про то, как я однажды пошел в лес за грибами и нашел волшебный чайник.
+</div>
+
+<script defer>
+document.getElementById("id20210128_0817").onclick =function () {	
+	
+	_id="id20210128_0808";
+	_TurnTargetDiv=document.getElementById(_id);
+	console.log(_TurnTargetDiv);
+	console.log(_TurnTargetDiv.style.display);
+	
+	if(_TurnTargetDiv.style.display=="block")
+	{_TurnTargetDiv.style.display="none";}
+	else{_TurnTargetDiv.style.display="block";}
+	
+};
+</script>
