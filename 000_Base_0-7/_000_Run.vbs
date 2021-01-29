@@ -1,15 +1,8 @@
-rem arr=Split("w3ii is my favourite website")
-rem for each index in arr
-rem      List = List & index & vbCrLf
-rem next
-rem MsgBox List
+Dim my_date, my_date1, my_date2, my_date3
 
-arr=Split("ПонедельниК,Вторник,Среда,Четверг,Пятница,Суббота",",")
-for each index in arr
-     List = List & index & vbCrLf
-next
-MsgBox List
+my_date = Date
+my_date1 = Now
+my_date2 = #12/05/2010#
+my_date3 = #15.05.10#
 
-rem arr = Array("ПонедельниК","Вторник","Среда","Четверг","Пятница","Суббота")
-rem Arr_Join = Join(arr, ",")
-rem MsgBox Arr_Join
+MsgBox my_date & vbCrLf & my_date1 & vbCrLf & my_date2 & vbCrLf & my_date3
