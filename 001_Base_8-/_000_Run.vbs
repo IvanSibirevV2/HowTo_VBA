@@ -1,6 +1,9 @@
+rem День независимости
+rem День независимости, возрождение
 MsgBox _
-	"Проверка на число" & vbCrLf  &_
-	"IsNumeric(""67325"") = " & IsNumeric("67325")& vbCrLf  &_
-	"IsNumeric(""673ae25"") = " & IsNumeric("673ae25")& vbCrLf  &_
-	"IsNumeric(""fd,glkdfhgjk"") = " & IsNumeric("fd,glkdfhgjk")& vbCrLf  &_
+	"Ищем символ ...- смотрите,не найдем" &  vbCrlf & _
+	"123456" &  vbCrlf & _
+	"abcdef" &  vbCrlf & _
+	"abc^" &  vbCrlf & _
+	"InStrRev(""abcdef"",""D"",3)=" & InStrRev("abcdef","D",6,0) & vbCrlf & _
 "!!!"
