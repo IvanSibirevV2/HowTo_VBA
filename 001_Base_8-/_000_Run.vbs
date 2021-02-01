@@ -1,9 +1,10 @@
 rem День независимости
 rem День независимости, возрождение
-MsgBox _
-	"Ищем символ ...- смотрите,не найдем" &  vbCrlf & _
-	"123456" &  vbCrlf & _
-	"abcdef" &  vbCrlf & _
-	"abc^" &  vbCrlf & _
-	"InStrRev(""abcdef"",""D"",3)=" & InStrRev("abcdef","D",6,0) & vbCrlf & _
+Msgbox _
+	"Перестановка символов" & vbCrlf & _
+	"унитаз" & vbCrlf & _
+	StrReverse("унитаз") & vbCrlf & _
+	"Len(""унитаз"")=" &Len("унитаз") & vbCrlf & _
+	"Asc(""A"")=" & Asc("A") & vbCrlf & _ 
+	"Chr(65)=" & Chr(65) & vbCrlf & _ 
 "!!!"
